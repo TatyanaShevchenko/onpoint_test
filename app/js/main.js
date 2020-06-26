@@ -9,10 +9,15 @@ let lineItemWidth = document.querySelector(".line-slider__item").offsetWidth;
 let offset = 0;
 let ost = 0;
 
+let toggleActiveLine = document.querySelector(".toggle-line__active");
+let width = 0;
+let toggleIcon = document.querySelector(".toggle-icon");
+let toggleActiveLineWidth = 0;
+
+
 for (let i = 0; i < lineSlides.length; i++) {
     lineWidth += lineSlides[i].offsetWidth;
 }
-console.log("lineWidth=" + lineWidth);
 
 line.style.width = lineWidth + "px";
 
@@ -26,6 +31,7 @@ function onTouchStart(event) {
     x0 = touch[0].pageX;
     isSliding = true;
 }
+
 
 function onPointerUp(event) {
     if (isSliding === true) {
@@ -45,12 +51,10 @@ function onPointerUp(event) {
 }
 
 function onTouchEnd(event) {
-    console.log("отпустил мышь");
-    console.log("isSliding=" + isSliding);
     if (isSliding === true) {
         let touchend = event.changedTouches;
         x = touchend[0].pageX;
-        console.log("x=" + x);
+
         if (x0 > x) {
             slideRight = true;
             makeMeSlideRight();
@@ -64,6 +68,30 @@ function onTouchEnd(event) {
     }
 }
 
+function drawLine(x, x0) {
+    width = Math.abs(x - x0) + "px";
+    return width;
+}
+
+function onPointerMove(event) {
+    if (isSliding === true) {
+        x = e.offsetX;
+        toggleActiveLine.style.width = drawLine(x, x0);
+        toggleIcon.style.left = drawLine(x, x0);
+
+    }
+};
+
+function onTouchMove(event) {
+    if (isSliding === true) {
+        let touchend = event.changedTouches;
+        x = touchend[0].pageX;
+        while (Math.abs(x - x0) < 600) {
+            toggleActiveLine.style.width = drawLine(x, x0);
+            toggleIcon.style.left = drawLine(x, x0);
+        }
+    }
+};
 // Add event listeners
 
 window.addEventListener("pointerdown", onPointerDown);
@@ -71,6 +99,9 @@ window.addEventListener("touchstart", onTouchStart);
 
 window.addEventListener("pointerup", onPointerUp);
 window.addEventListener("touchend", onTouchEnd);
+
+window.addEventListener("pointermove", onPointerMove);
+window.addEventListener("touchmove", onTouchMove);
 
 //////////////////////////////
 
@@ -185,7 +216,7 @@ function makeMeSlideDown() {
             dots[i].classList.remove("active");
         }
         dots[currentSlide - 1].classList.add("active");
-        backLights[currentSlide - 1].style.display = "block";
+        backLights[currentSlide - 1].style.display = "flex";
     }
 
 }
