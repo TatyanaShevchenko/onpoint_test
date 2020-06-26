@@ -1,4 +1,7 @@
 //line slider start
+
+let isSliding = false;
+let isSlidingIcon = false;
 let lineSlider = document.getElementById("line-slider");
 let line = document.querySelector(".line");
 let lineSlides = document.querySelectorAll(".line-slider__item");
@@ -9,11 +12,15 @@ let lineItemWidth = document.querySelector(".line-slider__item").offsetWidth;
 let offset = 0;
 let ost = 0;
 
-let toggleActiveLine = document.querySelector(".toggle-line__active");
+let toggleActiveLine = document.getElementById("active-line");
 let width = 0;
 let toggleIcon = document.querySelector(".toggle-icon");
 let toggleActiveLineWidth = 0;
+let currentHorizontalSlide = 0;
+setCurrentHorizontalSlide(3);
 
+let coord = toggleIcon.getBoundingClientRect();
+const left = coord.left;
 
 for (let i = 0; i < lineSlides.length; i++) {
     lineWidth += lineSlides[i].offsetWidth;
@@ -26,12 +33,22 @@ function onPointerDown(event) {
     isSliding = true;
 }
 
+function onPointerDownIcon(event) {
+    iconx0 = event.offsetX;
+    isSlidingIcon = true;
+}
+
 function onTouchStart(event) {
     let touch = event.touches;
     x0 = touch[0].pageX;
     isSliding = true;
 }
 
+function onTouchStartIcon(event) {
+    let touch = event.touches;
+    iconx0 = touch[0].pageX;
+    isSlidingIcon = true;
+}
 
 function onPointerUp(event) {
     if (isSliding === true) {
@@ -54,54 +71,76 @@ function onTouchEnd(event) {
     if (isSliding === true) {
         let touchend = event.changedTouches;
         x = touchend[0].pageX;
-
-        if (x0 > x) {
-            slideRight = true;
-            makeMeSlideRight();
-        }
-        if (x > x0) {
-            slideLeft = true;
-            makeMeSlideLeft();
-        }
         x = 0;
         isSliding = false;
     }
 }
 
 function drawLine(x, x0) {
-    width = Math.abs(x - x0) + "px";
+    width = Math.abs(x - x0);
     return width;
 }
 
+function setCurrentHorizontalSlide(n) {
+    currentHorizontalSlide = n;
+    offset = lineItemWidth * (n - 1);
+    line.style.left = -offset + "px";
+}
+
 function onPointerMove(event) {
-    if (isSliding === true) {
-        x = e.offsetX;
-        toggleActiveLine.style.width = drawLine(x, x0);
-        toggleIcon.style.left = drawLine(x, x0);
+    if (isSlidingIcon === true) {
+        x = event.offsetX;
+        if (x >= left && x <= (left + 600)) {
+            toggleActiveLine.style.width = drawLine(x, left) + "px";
+            toggleIcon.style.left = (drawLine(x, left) - 20) + "px";
+            if (x >= (left) && x <= (left + 200)) {
+                setCurrentHorizontalSlide(1);
+            }
+            if (x >= (left + 200) && x <= (left + 400)) {
+                setCurrentHorizontalSlide(2);
+            }
 
-    }
-};
-
-function onTouchMove(event) {
-    if (isSliding === true) {
-        let touchend = event.changedTouches;
-        x = touchend[0].pageX;
-        while (Math.abs(x - x0) < 600) {
-            toggleActiveLine.style.width = drawLine(x, x0);
-            toggleIcon.style.left = drawLine(x, x0);
+            if (x >= (left + 400) && x <= (left + 600)) {
+                setCurrentHorizontalSlide(3);
+            }
         }
     }
-};
+}
+
+function onTouchMove(event) {
+    if (isSlidingIcon === true) {
+        let touchend = event.changedTouches;
+        x = touchend[0].pageX;
+        if (x >= left && x <= (left + 600)) {
+            toggleActiveLine.style.width = drawLine(x, left) + "px";
+            toggleIcon.style.left = (drawLine(x, left) - 20) + "px";
+            if (x >= (left) && x <= (left + 200)) {
+                setCurrentHorizontalSlide(1);
+            }
+            if (x >= (left + 200) && x <= (left + 400)) {
+                setCurrentHorizontalSlide(2);
+            }
+
+            if (x >= (left + 400) && x <= (left + 600)) {
+                setCurrentHorizontalSlide(3);
+            }
+        }
+    }
+}
 // Add event listeners
 
 window.addEventListener("pointerdown", onPointerDown);
 window.addEventListener("touchstart", onTouchStart);
+toggleIcon.addEventListener("pointerdown", onPointerDownIcon);
+toggleIcon.addEventListener("touchstart", onTouchStartIcon);
 
 window.addEventListener("pointerup", onPointerUp);
 window.addEventListener("touchend", onTouchEnd);
+toggleIcon.addEventListener("pointerup", onPointerUp);
+toggleIcon.addEventListener("touchend", onTouchEnd);
 
-window.addEventListener("pointermove", onPointerMove);
-window.addEventListener("touchmove", onTouchMove);
+toggleIcon.addEventListener("pointermove", onPointerMove);
+toggleIcon.addEventListener("touchmove", onTouchMove);
 
 //////////////////////////////
 
@@ -158,9 +197,6 @@ function onTouchStartVert(event) {
     let touch = event.touches;
     y0 = touch[0].pageY;
     isSlidingVert = true;
-    // for (a = 0; a < backLights.length; a++) {
-    //     backLights[a].style.display = "none";
-    // }
 }
 
 function onPointerUpVert(event) {
@@ -216,9 +252,7 @@ function makeMeSlideDown() {
             dots[i].classList.remove("active");
         }
         dots[currentSlide - 1].classList.add("active");
-        backLights[currentSlide - 1].style.display = "flex";
     }
-
 }
 
 function makeMeSlideUp() {
@@ -231,7 +265,6 @@ function makeMeSlideUp() {
             dots[i].classList.remove("active");
         }
         dots[currentSlide - 1].classList.add("active");
-        backLights[currentSlide - 1].style.display = "block";
     }
 }
 
