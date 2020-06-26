@@ -1,69 +1,20 @@
-// let slideNumber = 1;
-// showSlides(slideNumber);
-
-// function setCurrentSlide(n) {
-//     showSlides(slideNumber = n);
-// }
-
-// function next() {
-//     showSlides(slideNumber += 1);
-// }
-
-// function prev() {
-//     showSlides(slideNumber -= 1);
-// }
-
-// function showSlides(n) {
-//     const slides = document.getElementsByClassName("slider__item");
-//     const dots = document.getElementsByClassName("slider-dots__item");
-//     if (n > slides.length) {
-//         slideNumber = 1;
-//     }
-//     if (n < 1) {
-//         slideNumber = slides.length;
-//     }
-//     for (let i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-//     for (let i = 0; i < dots.length; i++) {
-//         dots[i].className = dots[i].className.replace(" active", "");
-//     }
-//     slides[slideNumber - 1].style.display = "block";
-//     dots[slideNumber - 1].className += " active";
-// }
-
 //line slider start
 let lineSlider = document.getElementById("line-slider");
 let line = document.querySelector(".line");
 let lineSlides = document.querySelectorAll(".line-slider__item");
 
-
-//let lineSliderWidth = document.querySelector(".line-slider").offsetWidth;
 let lineWidth = 0;
 let lineItemWidth = document.querySelector(".line-slider__item").offsetWidth;
-
 
 let offset = 0;
 let ost = 0;
 
-
 for (let i = 0; i < lineSlides.length; i++) {
     lineWidth += lineSlides[i].offsetWidth;
 }
-console.log('lineWidth=' + lineWidth);
-
+console.log("lineWidth=" + lineWidth);
 
 line.style.width = lineWidth + "px";
-
-
-// let isSliding = false;
-// let slideRight = false;
-// let slideLeft = false;
-// let x0 = 0;
-// let x = 0;
-
-// since you will need them later to deregister the event
-// let touch
 
 function onPointerDown(event) {
     x0 = event.offsetX;
@@ -76,49 +27,40 @@ function onTouchStart(event) {
     isSliding = true;
 }
 
-
 function onPointerUp(event) {
     if (isSliding === true) {
         x = event.offsetX;
         if (x0 > x) {
             slideRight = true;
-            makeMeSlide();
+            makeMeSlideRight();
         }
         if (x > x0) {
             slideLeft = true;
 
-            makeMeSlideReverse();
+            makeMeSlideLeft();
         }
         x = 0;
         isSliding = false;
     }
 }
 
-
 function onTouchEnd(event) {
-    console.log('отпустил мышь');
-    console.log('isSliding=' + isSliding);
+    console.log("отпустил мышь");
+    console.log("isSliding=" + isSliding);
     if (isSliding === true) {
-        // x = event.offsetX;
-        // let untouch = event.touches[0];
-        // x = untouch.pageX;
         let touchend = event.changedTouches;
-        // let count = touchend.length;
-        // console.log('count=' + count);
         x = touchend[0].pageX;
-        console.log('x=' + x);
+        console.log("x=" + x);
         if (x0 > x) {
             slideRight = true;
-            makeMeSlide();
+            makeMeSlideRight();
         }
         if (x > x0) {
             slideLeft = true;
-            // console.log('slideLeft = true');
-            makeMeSlideReverse();
+            makeMeSlideLeft();
         }
         x = 0;
         isSliding = false;
-        // console.log('isSliding = false;');
     }
 }
 
@@ -130,50 +72,146 @@ window.addEventListener("touchstart", onTouchStart);
 window.addEventListener("pointerup", onPointerUp);
 window.addEventListener("touchend", onTouchEnd);
 
-
-
 //////////////////////////////
 
-
-function makeMeSlide() {
+function makeMeSlideRight() {
     ost = lineWidth - offset - lineItemWidth;
     if (ost > 0) {
         offset += lineItemWidth;
         line.style.left = -offset + "px";
     }
-    // console.log('ost=' + ost);
-    // console.log('lineWidth=' + lineWidth);
-    // console.log('lineItemWidth=' + lineItemWidth);
-    // console.log('offset=' + offset);
-};
+}
 
-function makeMeSlideReverse() {
+function makeMeSlideLeft() {
     ost = lineWidth - offset - lineItemWidth;
-    if (ost < (lineWidth - lineItemWidth)) {
+    if (ost < lineWidth - lineItemWidth) {
         offset -= lineItemWidth;
         line.style.left = -offset + "px";
     }
-    // console.log('ost=' + ost);
-    // console.log('lineWidth=' + lineWidth);
-    // console.log('lineItemWidth=' + lineItemWidth);
-    // console.log('offset=' + offset);
-};
-
-
-
-// lineSlider.onclick = makeMeSlide;
-
-// lineSlider.onclick = function() {
-//     ost = lineWidth - offset - lineItemWidth;
-
-//     if (ost > 0) {
-//         offset += lineItemWidth;
-//         line.style.left = -offset + "px";
-//     }
-//     // console.log('ost=' + ost);
-//     // console.log('lineWidth=' + lineWidth);
-//     // console.log('lineItemWidth=' + lineItemWidth);
-//     // console.log('offset=' + offset);
-// }
+}
 
 //line slider end
+
+//vertical slider start
+let verticalSlider = document.getElementById("vertical-slider");
+let column = document.querySelector(".column");
+let verticalSlides = document.querySelectorAll(".vertical-slider__item");
+
+let columnHeight = 0;
+let columnItemHeight = document.querySelector(".vertical-slider__item")
+    .offsetHeight;
+
+let offsetVert = 0;
+let ostVert = 0;
+let isSlidingVert = false;
+let slideDown = false;
+let slideUp = false;
+
+let dots = document.getElementsByClassName("slider-dots__item");
+let backLights = document.getElementsByClassName("scroll-down");
+let currentSlide = 1;
+
+for (let i = 0; i < verticalSlides.length; i++) {
+    columnHeight += verticalSlides[i].offsetHeight;
+}
+
+column.style.height = columnHeight + "px";
+dots[0].classList.add("active");
+
+function onPointerDownVert(event) {
+    y0 = event.offsetY;
+    isSlidingVert = true;
+}
+
+function onTouchStartVert(event) {
+    let touch = event.touches;
+    y0 = touch[0].pageY;
+    isSlidingVert = true;
+    // for (a = 0; a < backLights.length; a++) {
+    //     backLights[a].style.display = "none";
+    // }
+}
+
+function onPointerUpVert(event) {
+    if (isSlidingVert === true) {
+        y = event.offsetY;
+
+        if (y0 > y) {
+            slideDown = true;
+            makeMeSlideDown();
+        }
+        if (y > y0) {
+            slideUp = true;
+            makeMeSlideUp();
+        }
+        y = 0;
+        isSlidingVert = false;
+    }
+}
+
+function onTouchEndVert(event) {
+    if (isSlidingVert === true) {
+        let touchendVert = event.changedTouches;
+        y = touchendVert[0].pageY;
+
+        if (y0 > y) {
+            slideDown = true;
+            makeMeSlideDown();
+        }
+        if (y > y0) {
+            slideUp = true;
+            makeMeSlideUp();
+        }
+        y = 0;
+        isSlidingVert = false;
+    }
+}
+
+// // Add event listeners
+
+window.addEventListener("pointerdown", onPointerDownVert);
+window.addEventListener("touchstart", onTouchStartVert);
+
+window.addEventListener("pointerup", onPointerUpVert);
+window.addEventListener("touchend", onTouchEndVert);
+
+function makeMeSlideDown() {
+    ostVert = columnHeight - offsetVert - columnItemHeight;
+    if (ostVert > 0) {
+        offsetVert += columnItemHeight;
+        column.style.top = -offsetVert + "px";
+        currentSlide += 1;
+        for (i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        dots[currentSlide - 1].classList.add("active");
+        backLights[currentSlide - 1].style.display = "block";
+    }
+
+}
+
+function makeMeSlideUp() {
+    ostVert = columnHeight - offsetVert - columnItemHeight;
+    if (ostVert < columnHeight - columnItemHeight) {
+        offsetVert -= columnItemHeight;
+        column.style.top = -offsetVert + "px";
+        currentSlide -= 1;
+        for (i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+        dots[currentSlide - 1].classList.add("active");
+        backLights[currentSlide - 1].style.display = "block";
+    }
+}
+
+//vertical slider end
+
+function setCurrentSlide(n) {
+    for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+    }
+    dots[n - 1].classList.add("active");
+    currentSlide = n;
+    offsetVert = columnItemHeight * (n - 1);
+    column.style.top = -offsetVert + "px";
+}
