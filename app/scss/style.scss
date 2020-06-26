@@ -142,7 +142,7 @@ html {
     .view_port {
         border-radius: 50%;
         border: solid 1px rgb(207, 20, 55);
-        background-color: rgba(222, 121, 27, .3);
+        background-color: rgba(222, 121, 27, 0.3);
         position: relative;
         overflow: hidden;
     }
@@ -152,7 +152,7 @@ html {
         left: 50%;
         transform: translate(-50%, -50%);
         color: white;
-        background: radial-gradient(rgba(222, 121, 27, .5), rgba(207, 20, 55, .5));
+        background: radial-gradient( rgba(222, 121, 27, 0.5), rgba(207, 20, 55, 0.5));
         height: 30px;
         width: 30px;
         border-radius: 50%;
@@ -165,7 +165,7 @@ html {
         left: 50%;
         transform: translate(-50%, -50%);
         color: white;
-        background: radial-gradient(rgba(222, 121, 27, .5), rgba(207, 20, 55, .5));
+        background: radial-gradient( rgba(222, 121, 27, 0.5), rgba(207, 20, 55, 0.5));
         height: 0px;
         width: 0px;
         border-radius: 50%;
@@ -257,7 +257,7 @@ html {
         left: 30px;
         width: 200px;
         height: 200px;
-        opacity: .5;
+        opacity: 0.5;
         filter: blur(3px);
     }
     #ice_06 {
@@ -265,7 +265,7 @@ html {
         left: 750px;
         width: 100px;
         height: 100px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(50deg);
     }
     #ice_07 {
@@ -273,7 +273,7 @@ html {
         right: 70px;
         width: 40px;
         height: 40px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(-10deg);
     }
     #ice_08 {
@@ -281,7 +281,7 @@ html {
         left: 50px;
         width: 100px;
         height: 100px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(70deg);
     }
     #ice_09 {
@@ -289,7 +289,7 @@ html {
         left: 500px;
         width: 40px;
         height: 40px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(-20deg);
     }
     #ice_10 {
@@ -297,7 +297,7 @@ html {
         right: 0;
         width: 200px;
         height: 200px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(-10deg);
         filter: blur(3px);
     }
@@ -306,7 +306,7 @@ html {
         left: 0;
         width: 35px;
         height: 35px;
-        opacity: .4;
+        opacity: 0.4;
         transform: rotate(-10deg);
     }
     #ice_12 {
@@ -314,7 +314,7 @@ html {
         left: 150px;
         width: 200px;
         height: 200px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(-30deg);
         filter: blur(3px);
     }
@@ -323,7 +323,7 @@ html {
         right: -20px;
         width: 100px;
         height: 100px;
-        opacity: .5;
+        opacity: 0.5;
         transform: rotate(70deg);
     }
 }
@@ -350,6 +350,15 @@ html {
         background-size: cover;
         background-repeat: no-repeat;
         float: left;
+    }
+    .line-slider__item-title {
+        color: #fff;
+        font-size: 30px;
+        padding-top: 115px;
+        padding-left: 80px;
+    }
+    .first-slide-title {
+        margin-bottom: 60px;
     }
     .line-slider__toggle {
         position: absolute;
@@ -387,6 +396,239 @@ html {
             img {
                 height: 55px;
             }
+        }
+    }
+    .line-slider__item-content {
+        #two {
+            position: relative;
+            &::before {
+                font-size: 22px;
+                position: absolute;
+                content: "Инкретиновый эффект";
+                text-align: right;
+                top: 50%;
+                max-width: 150px;
+                left: -160px;
+                transform: translate(0, -50%);
+            }
+        }
+        #three {
+            position: relative;
+            &::before {
+                font-size: 22px;
+                position: absolute;
+                content: "Дефект α-клеток";
+                text-align: left;
+                top: 50%;
+                max-width: 90px;
+                right: -100px;
+                transform: translate(0, -50%);
+            }
+        }
+        #four {
+            position: relative;
+            &::before {
+                font-size: 22px;
+                position: absolute;
+                content: "4 Жировые клетки";
+                text-align: left;
+                top: 50%;
+                max-width: 90px;
+                right: -100px;
+                transform: translate(0, -50%);
+            }
+        }
+        #eight {
+            position: relative;
+            &::before {
+                font-size: 22px;
+                position: absolute;
+                content: "8 Почки";
+                text-align: right;
+                top: 50%;
+                max-width: 60px;
+                left: -70px;
+                transform: translate(0, -50%);
+            }
+        }
+        color: #fff;
+        max-width: 940px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        .content-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            text-align: center;
+        }
+        .first-row {
+            align-items: flex-end;
+            .round {
+                &::after {
+                    position: absolute;
+                    content: "";
+                    background-image: url(../images/icons/arrow_long.svg);
+                    background-repeat: no-repeat;
+                    bottom: -35px;
+                    left: 15px;
+                    width: 40px;
+                    height: 20px;
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+        .last-row {
+            align-items: flex-start;
+            .round {
+                &::after {
+                    position: absolute;
+                    content: "";
+                    background-image: url(../images/icons/arrow_long.svg);
+                    background-repeat: no-repeat;
+                    top: -35px;
+                    right: 15px;
+                    width: 40px;
+                    height: 20px;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        .center {
+            .arrow-right {
+                &::after {
+                    position: absolute;
+                    content: "";
+                    background-image: url(../images/icons/arrow_long.svg);
+                    background-repeat: no-repeat;
+                    top: 50%;
+                    right: -80px;
+                    width: 80px;
+                    height: 20px;
+                    transform: translate(0, -50%) rotate(180deg);
+                }
+            }
+            .arrow-left {
+                &::after {
+                    position: absolute;
+                    content: "";
+                    background-image: url(../images/icons/arrow_long.svg);
+                    background-repeat: no-repeat;
+                    top: 50%;
+                    left: -80px;
+                    width: 80px;
+                    height: 20px;
+                }
+            }
+        }
+        .content-row.center {
+            align-items: center;
+            margin-top: 45px;
+            margin-bottom: 45px;
+        }
+        .content-row__box {
+            display: flex;
+            flex-direction: column;
+            p.number {
+                font-size: 36px;
+            }
+            p.label {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            .label.left {
+                text-align: left;
+            }
+            p.rectangle {
+                font-size: 20px;
+                padding: 40px 55px;
+                border: 1px solid #fff;
+                margin-bottom: -15px;
+            }
+            p.rectangle-big {
+                padding: 50px 110px;
+                font-size: 25px;
+                margin-bottom: 0;
+            }
+            .round {
+                position: relative;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.2);
+                p {
+                    font-size: 60px;
+                }
+            }
+            .round.medium {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto;
+            }
+            .round-img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                align-items: center;
+                img {
+                    max-width: 56px;
+                }
+            }
+            .round-img.medium {
+                img {
+                    max-width: 40px;
+                }
+            }
+        }
+        .content-row__box.line-box {
+            display: flex;
+            align-items: center;
+        }
+        .first-slide-box+.first-slide-box {
+            margin-left: 80px;
+        }
+        .second-slide-round+.second-slide-round {
+            margin-left: 90px;
+        }
+        .abs-arrow {
+            position: absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 15px;
+            background-image: url(../images/icons/arrow_long.svg);
+        }
+        #arrow-01 {
+            width: 180px;
+            top: calc(50% + 20px);
+            left: 50%;
+            transform: translate(-120%) rotate(-40deg);
+        }
+        #arrow-02 {
+            width: 180px;
+            top: calc(50% + 20px);
+            left: 50%;
+            transform: translate(20%) rotate(-140deg);
+        }
+        #arrow-03 {
+            width: 50px;
+            top: calc(50% + 25px);
+            left: 50%;
+            transform: translate(-50%) rotate(-90deg);
+        }
+        #arrow-04 {
+            width: 60px;
+            top: calc(50% + 110px);
+            left: calc(50% - 160px);
+            transform: translate(-50%) rotate(-180deg);
+        }
+        #arrow-05 {
+            width: 60px;
+            top: calc(50% + 110px);
+            left: calc(50% + 160px);
+            transform: translate(-50%);
         }
     }
 }
