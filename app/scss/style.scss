@@ -12,7 +12,7 @@ html {
 }
 
 .body {
-    font-family: "GothaProReg";
+    font-family: 'Gotham Pro';
     margin: 0;
     padding: 0;
 }
@@ -74,6 +74,7 @@ html {
 //slider dots end
 //vertical slider start
 .vertical-slider {
+    font-family: 'Gotham Pro';
     width: 1024px;
     height: 768px;
     overflow: hidden;
@@ -107,15 +108,18 @@ html {
             font-size: 50px;
             line-height: 60px;
             padding: 150px 10px 10px 70px;
+            max-width: 880px;
         }
         .slider__item-title.white {
+            font-family: 'Gotham Pro Light';
             color: #fff;
-            max-width: 500px;
+            max-width: 520px;
             text-align: center;
             margin: 0 auto;
             margin-top: 100px;
         }
         .slider__item-label {
+            font-family: 'Lato Regular';
             font-size: 20px;
         }
         #label-1 {
@@ -388,6 +392,7 @@ html {
             display: flex;
             justify-content: space-between;
             margin-bottom: 30px;
+            font-size: 20px;
         }
         .toggle-icon {
             position: absolute;
@@ -402,7 +407,7 @@ html {
         #two {
             position: relative;
             &::before {
-                font-size: 22px;
+                font-size: 20px;
                 position: absolute;
                 content: "Инкретиновый эффект";
                 text-align: right;
@@ -415,7 +420,7 @@ html {
         #three {
             position: relative;
             &::before {
-                font-size: 22px;
+                font-size: 20px;
                 position: absolute;
                 content: "Дефект α-клеток";
                 text-align: left;
@@ -428,7 +433,7 @@ html {
         #four {
             position: relative;
             &::before {
-                font-size: 22px;
+                font-size: 20px;
                 position: absolute;
                 content: "4 Жировые клетки";
                 text-align: left;
@@ -441,7 +446,7 @@ html {
         #eight {
             position: relative;
             &::before {
-                font-size: 22px;
+                font-size: 20px;
                 position: absolute;
                 content: "8 Почки";
                 text-align: right;
@@ -527,20 +532,57 @@ html {
             margin-top: 45px;
             margin-bottom: 45px;
         }
+        .round-img.medium {
+            img {
+                max-width: 40px;
+            }
+        }
+        .round {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            p {
+                font-size: 60px;
+            }
+        }
+        .round.medium {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+        }
+        .round-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            img {
+                max-width: 56px;
+            }
+        }
+        p.number {
+            font-family: 'Lato Semibold';
+            font-size: 36px;
+        }
+        p.label {
+            font-family: 'Lato Medium';
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .label.left {
+            text-align: left;
+        }
+        .label.label-20 {
+            font-size: 20px;
+        }
         .content-row__box {
             display: flex;
             flex-direction: column;
-            p.number {
-                font-size: 36px;
-            }
-            p.label {
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
-            .label.left {
-                text-align: left;
-            }
             p.rectangle {
+                font-family: 'Lato Medium';
                 font-size: 20px;
                 padding: 40px 55px;
                 border: 1px solid #fff;
@@ -550,37 +592,6 @@ html {
                 padding: 50px 110px;
                 font-size: 25px;
                 margin-bottom: 0;
-            }
-            .round {
-                position: relative;
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                background-color: rgba(255, 255, 255, 0.2);
-                p {
-                    font-size: 60px;
-                }
-            }
-            .round.medium {
-                width: 60px;
-                height: 60px;
-                margin: 0 auto;
-            }
-            .round-img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                display: flex;
-                align-items: center;
-                img {
-                    max-width: 56px;
-                }
-            }
-            .round-img.medium {
-                img {
-                    max-width: 40px;
-                }
             }
         }
         .content-row__box.line-box {
@@ -629,6 +640,237 @@ html {
             top: calc(50% + 110px);
             left: calc(50% + 160px);
             transform: translate(-50%);
+        }
+    }
+    .line-slider__item-content.column-flex.bottom {
+        margin-top: 100px;
+    }
+    .line-slider__item-content.column-flex {
+        display: flex;
+        flex-direction: row;
+        .content__box.big-margin {
+            margin: 70px 0;
+            align-items: flex-start;
+        }
+        .content-column.top {
+            margin-top: -100px;
+            margin-left: 5px;
+            margin-right: 5px;
+            position: relative;
+            .abs-arrow {
+                position: absolute;
+                background-size: cover;
+                background-repeat: no-repeat;
+                height: 15px;
+                background-image: url(../images/icons/arrow_long.svg);
+            }
+            #arrow-3-01 {
+                width: 120px;
+                top: 90px;
+                left: 0;
+                transform: translate(-5%) rotate(-20deg);
+            }
+            #arrow-3-02 {
+                width: 120px;
+                top: 110px;
+                left: 10px;
+                transform: translate(-5%) rotate(160deg);
+            }
+            #arrow-3-03 {
+                width: 120px;
+                top: 90px;
+                left: 220px;
+                transform: translate(-5%) rotate(-160deg);
+            }
+            #arrow-3-04 {
+                width: 120px;
+                top: 110px;
+                left: 220px;
+                transform: translate(-5%) rotate(20deg);
+            }
+            #arrow-3-05 {
+                width: 150px;
+                top: 150px;
+                left: 0px;
+                transform: translate(-5%) rotate(-40deg);
+            }
+            #arrow-3-06 {
+                width: 150px;
+                top: 170px;
+                left: 10px;
+                transform: translate(-5%) rotate(140deg);
+            }
+            #arrow-3-07 {
+                width: 150px;
+                top: 150px;
+                left: 200px;
+                transform: translate(-5%) rotate(-140deg);
+            }
+            #arrow-3-08 {
+                width: 150px;
+                top: 170px;
+                left: 190px;
+                transform: translate(-5%) rotate(40deg);
+            }
+            #arrow-3-09 {
+                width: 230px;
+                top: 240px;
+                left: 67px;
+                height: 20px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-10 {
+                width: 70px;
+                top: 165px;
+                left: 115px;
+                height: 15px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-11 {
+                width: 70px;
+                top: 165px;
+                left: 160px;
+                height: 15px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-12 {
+                width: 70px;
+                top: 320px;
+                left: 115px;
+                height: 15px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-13 {
+                width: 70px;
+                top: 320px;
+                left: 160px;
+                height: 15px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-14 {
+                width: 30px;
+                top: 360px;
+                left: -50px;
+                height: 10px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-15 {
+                width: 30px;
+                top: 400px;
+                left: 170px;
+                height: 10px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-16 {
+                width: 30px;
+                top: 400px;
+                left: 150px;
+                height: 10px;
+                transform: translate(-5%) rotate(90deg);
+            }
+            #arrow-3-17 {
+                width: 30px;
+                top: 180px;
+                left: 400px;
+                height: 10px;
+                transform: translate(-5%) rotate(90deg);
+            }
+            #arrow-3-18 {
+                width: 30px;
+                top: 180px;
+                left: 420px;
+                height: 10px;
+                transform: translate(-5%) rotate(-90deg);
+            }
+            #arrow-3-19 {
+                width: 200px;
+                top: 230px;
+                left: -40px;
+                transform: translate(-5%) rotate(-50deg);
+            }
+            #arrow-3-20 {
+                width: 100px;
+                top: 420px;
+                left: 0px;
+                transform: translate(-5%) rotate(180deg);
+            }
+            #arrow-3-21 {
+                width: 120px;
+                top: 380px;
+                left: -10px;
+                transform: translate(-5%) rotate(210deg);
+            }
+        }
+        .max-width.absolute {
+            position: relative;
+            &::after {
+                position: absolute;
+                content: '↑ глюкагон';
+                color: #fff;
+                font-size: 15px;
+                font-family: 'Lato Medium';
+                left: 10px;
+                top: 70px;
+            }
+        }
+        .content__box {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 30px;
+            max-width: 335px;
+            .max-width {
+                min-width: 160px;
+            }
+            .right {
+                text-align: right;
+                margin-right: 10px;
+            }
+            .round.medium {
+                margin: 0;
+                min-width: 60px;
+            }
+            .left {
+                margin-left: 10px;
+            }
+        }
+        .content__box.column {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            .stroka {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p+p {
+                    margin: 15px;
+                }
+            }
+        }
+        .content__box.background {
+            background: rgb(255, 255, 255);
+            background: linear-gradient(175deg, rgba(255, 255, 255, .1) 0%, rgba(112, 0, 163, 0) 100%);
+            width: 260px;
+            height: 200px;
+            border-radius: 50px 50px 0 0;
+            padding: 25px 15px;
+        }
+        .content__box.center {
+            justify-content: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .content__box.start {
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .content__box.align-center {
+            align-items: center;
+        }
+        .margin10 {
+            margin-bottom: 10px;
         }
     }
 }

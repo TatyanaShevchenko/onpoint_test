@@ -17,7 +17,7 @@ let width = 0;
 let toggleIcon = document.querySelector(".toggle-icon");
 let toggleActiveLineWidth = 0;
 let currentHorizontalSlide = 0;
-setCurrentHorizontalSlide(3);
+setCurrentHorizontalSlide(1);
 
 let coord = toggleIcon.getBoundingClientRect();
 const left = coord.left;
@@ -181,6 +181,8 @@ let dots = document.getElementsByClassName("slider-dots__item");
 let backLights = document.getElementsByClassName("scroll-down");
 let currentSlide = 1;
 
+
+
 for (let i = 0; i < verticalSlides.length; i++) {
     columnHeight += verticalSlides[i].offsetHeight;
 }
@@ -191,6 +193,9 @@ dots[0].classList.add("active");
 function onPointerDownVert(event) {
     y0 = event.offsetY;
     isSlidingVert = true;
+    for (let blc = 0; blc < backLights.length; blc++) {
+        backLights[blc].style.display = "none";
+    }
 }
 
 function onTouchStartVert(event) {
@@ -213,6 +218,9 @@ function onPointerUpVert(event) {
         }
         y = 0;
         isSlidingVert = false;
+        for (let blc = 0; blc < backLights.length; blc++) {
+            backLights[blc].style.display = "flex";
+        }
     }
 }
 
@@ -271,10 +279,15 @@ function makeMeSlideUp() {
 //vertical slider end
 
 function setCurrentSlide(n) {
+    isSlidingVert = true;
     for (i = 0; i < dots.length; i++) {
         dots[i].classList.remove("active");
     }
+    for (let blc = 0; blc < backLights.length; blc++) {
+        backLights[blc].style.display = "none";
+    }
     dots[n - 1].classList.add("active");
+    backLights[n - 1].style.display = "flex";
     currentSlide = n;
     offsetVert = columnItemHeight * (n - 1);
     column.style.top = -offsetVert + "px";
